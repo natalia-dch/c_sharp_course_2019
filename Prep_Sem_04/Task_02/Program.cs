@@ -2,7 +2,7 @@
 /*ФИО: Доскач Наталья Алексеевна
 Группа: БПИ192
 Вариант: - 
-Задача: 
+Задача: Вывести на экран таблицу чисел от 0 до 15 в десятичной и шестнадцатеричной системах счисления
 */
 
 namespace Task_01
@@ -13,13 +13,13 @@ namespace Task_01
         {   //var-s
             do
             {
-                //input
-                Console.Write("Input ...:");
-                while (!int.TryParse(Console.ReadLine(), out x))
-                    Console.Write("Input ERROR! Input again:");
+
                 //processing
                 //output
-                Console.WriteLine();
+                for (int i = 0; i < 16; i++)
+                {
+                    Console.WriteLine($"{i,-2} | {i,-2:X} | {~i,-3} | {~i,-3:X}");
+                };
                 //ending
                 Console.WriteLine("Press<esc> to exit, any key to continue");
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);

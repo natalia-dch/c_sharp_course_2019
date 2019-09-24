@@ -9,38 +9,52 @@ namespace Task_01
 {
     class Program
     {
-        static int markConverter(int mark10)
+        public static bool RectangleInflate(int x, int y, ref int height, ref int width)
         {
-            switch (mark10)
+            // проверяем корректность переданных значений
+            if (height <= 0 || width <= 0) return false;
+            height++;
+            width++;
+            return true;
+        }
+
+        public static bool RectangleDeflate(int x, int y, ref int height, ref int width)
+        {
+            // проверяем корректность переданных значений
+            if (height <= 1 || width <= 1) return false;
+            height--;
+            width--;
+            return true;
+        }
+
+        public static bool RectangleNormalize(int x, int y, ref int height, ref int width)
+        {
+            // проверяем корректность переданных значений
+            if (height == width) return false;
+            height = height > width ? width : height;
+            width = width > height ? height : width;
+            return true;
+        }
+
+        static void isOk(int x, int y, ref int height, ref int width) {
+            if (!RectangleInflate(x, y, ref height, ref width))
             {
-                case 1: case 2: case 3: return 2;
-                case 4: case 5: return 3;
-                case 6: case 7: return 4;
-                case 8: case 9: case 10: return 5;
-                default: return 0;
+                Console.WriteLine("Неверные параметры прямоугольника!");
+                return;
             }
+            Console.WriteLine("Преобразование успешно произведено:");
+            Console.WriteLine("({0},{1}) h={2} w={3}", x, y, height, width);
         }
         static void Main(string[] args)
         {   //var-s
-            int mark10;
-            int mark4;
-            do
-            {
-                //input
-                Console.Write("Input your mark:");
-                while (!int.TryParse(Console.ReadLine(), out mark10))
-                    Console.Write("Input ERROR! Input again:");
-                //processing
-                mark4 = markConverter(mark10);
-
-                //output
-                if (mark4 != 0)
-                    Console.WriteLine(mark4);
-                else
-                    Console.WriteLine("Error!");
-                //ending
-                Console.WriteLine("Press<esc> to exit, any key to continue");
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            int x = 0, y = 0;
+            int height = 5, width = 7;
+            isOk(x, y, ref height, ref width);
+            int xWrong = 1, yWrong = 1;
+            isOk(xWrong, yWrong, ref height, ref width);
+            int heightWrong = -5, widthWrong = 7;
+            isOk(x, y, ref heightWrong, ref widthWrong);
+            // тест метода для неверных данных
         }
     }
 }
