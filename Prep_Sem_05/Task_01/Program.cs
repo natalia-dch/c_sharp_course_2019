@@ -2,14 +2,9 @@
 /*ФИО: Доскач Наталья Алексеевна
 Группа: БПИ192
 Вариант: - 
-Задача: В основной программе ввести трехзначное натуральное число и преобразовать его в число, где его цифры упорядочены по убыванию.
+Задача: Пользователем с клавиатуры вводится целые числа N и K (1 ≤ K ≤ N). Сформировать массив A размера N. Вывести элементы массива с индексами, кратными K: AK, A2·K, A3·K, … .
 
-Для этого написать метод, так преобразующий значение целочисленного трехзначного параметра, чтобы его цифры стали упорядочены по убыванию. Метод должен возвращать значение false, если параметр задан неверно. При удачном преобразовании метод возвращает true. 
-
-Заголовок метода: 
-bool Transform(ref uint numb)
-
-Основная программа, используя метод, «общается» с пользователем.
+Условный оператор не использовать.
 */
 
 namespace Task_01
@@ -18,14 +13,27 @@ namespace Task_01
     {
         static void Main(string[] args)
         {   //var-s
+            uint N;
+            uint K;
             do
             {
                 //input
-                Console.Write("Input ...:");
-                while (!int.TryParse(Console.ReadLine(), out x))
+                Console.Write("Input N:");
+                while (!uint.TryParse(Console.ReadLine(), out N))
                     Console.Write("Input ERROR! Input again:");
-                //processing
-                //output
+                Console.Write("Input K:");
+                while (!uint.TryParse(Console.ReadLine(), out K) || K > N)
+                    Console.Write("Input ERROR! Input again:");
+                //create array
+                int[] myArray = new int[N];
+                for (int i = 0; i < myArray.Length; i++)
+                {
+                    myArray[i] = (i + 3) * i + 4;
+                    Console.Write(myArray[i] + " ");
+                }
+                //вывести кратные K
+                for (uint i = K; i < N; i += K)
+                { Console.Write("\n" + myArray[i]); }
                 Console.WriteLine();
                 //ending
                 Console.WriteLine("Press<esc> to exit, any key to continue");

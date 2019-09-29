@@ -2,31 +2,48 @@
 /*ФИО: Доскач Наталья Алексеевна
 Группа: БПИ192
 Вариант: - 
-Задача: Написать методы, вычисляющие суммы рядов с машинной точностью (если это возможно):
-𝑺=𝒙^𝟐−(𝟐^𝟑 𝒙^𝟒)/𝟒!+(𝟐^𝟓 𝒙^𝟔)/𝟔!−…
-𝑺=𝟏+𝒙/𝟏!+𝒙^𝟐/𝟐!+…+𝒙^𝒏/𝒏!+…
-
-Вещественные значения x получать от пользователя в основной программе.
+Задача: статические классы и члены классов 
 */
 
-namespace Task_06
-{
-    class Program
+class myClassmate
+{ // Одноклассник
+
+    const int apprenticeship = 4; // срок обучения (лет)
+    static int entranceYear = 2010;
+    string name;
+    int birthYear;
+    static myClassmate()
     {
-        static void Main(string[] args)
-        {   //var-s
-            do
-            {
-                //input
-                Console.Write("Input ...:");
-                while (!int.TryParse(Console.ReadLine(), out x))
-                    Console.Write("Input ERROR! Input again:");
-                //processing
-                //output
-                Console.WriteLine();
-                //ending
-                Console.WriteLine("Press<esc> to exit, any key to continue");
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-        }
+        entranceYear = 2014;
     }
+    public myClassmate() { } // Конструктор умолчания
+    public myClassmate(string name, int by)
+    {//Конструктор общего вида
+        this.name = name;
+        birthYear = by;
+
+    }
+
+    public string Information()
+    { // Метод объекта
+        return "Фамилия: " + name + "; возраст: " +
+        (entranceYear - birthYear) +
+        " лет; год окончания: " +
+        (entranceYear + apprenticeship);
+    }
+
+}
+
+class Program
+{
+    static void Main()
+    {
+        myClassmate Nan = new myClassmate();
+        Console.WriteLine(Nan.Information());
+        myClassmate Bob = new myClassmate("Смирнов", 1997);
+        Console.WriteLine(Bob.Information());
+    }
+
+}
+
 }
