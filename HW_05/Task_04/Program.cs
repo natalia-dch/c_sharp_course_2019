@@ -2,32 +2,47 @@
 /*ФИО: Доскач Наталья Алексеевна
 Группа: БПИ192
 Вариант: - 
-Задача: В основной программе ввести натуральное число и вычислить суммы его цифр, находящихся в чётных и на нечётных разрядах. Разряд единиц считать нулевым и чётным.
-
-Для этого написать метод с натуральным параметром,  вычисляющий суммы цифр, находящихся на четных и на нечетных позициях в записи значения параметра.  
-
-Заголовок метода: 
-void Sums(uint number, out uint sumEven, out uint sumOdd)
-
-Основная программа, используя метод, «общается» с пользователем.
+Задача: 
+Пользователем с клавиатуры вводится целое число N > 0. В программе сформировать и вывести на экран целочисленный массив из N элементов, элементами которого являются нечетные числа от 1. Заполнение массива нечётными числами организовать при помощи метода.
 
 */
 
-namespace Task_04
+namespace Task_01
 {
     class Program
     {
+        static int[] MakeArr(int N)
+        {
+            int[] arr = new int[N];
+            int elem = 1;
+            for (int i = 0; i < N; i++)
+            {
+                arr[i] = elem;
+                elem += 2;
+            }
+            return arr;
+        }
+
+        static void printArr(int[] arr)
+        {
+            foreach (int memb in arr)
+                Console.Write($"{memb}\t");
+            Console.WriteLine();
+        }
+
         static void Main(string[] args)
         {   //var-s
+            int N;
+            double a;
             do
             {
                 //input
-                Console.Write("Input ...:");
-                while (!int.TryParse(Console.ReadLine(), out x))
+                Console.Write("Input N:");
+                while (!int.TryParse(Console.ReadLine(), out N) || N < 1)
                     Console.Write("Input ERROR! Input again:");
                 //processing
-                //output
-                Console.WriteLine();
+                int[] arr = MakeArr(N);
+                printArr(arr);
                 //ending
                 Console.WriteLine("Press<esc> to exit, any key to continue");
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);

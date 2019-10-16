@@ -37,7 +37,7 @@ namespace Task_01
                 //print arr
                 foreach (int memb in arrFromNum)
                     Console.Write($"{memb,-2}");
-
+                arrFromNum.
                 Console.WriteLine();
                 //ending
                 Console.WriteLine("Press<esc> to exit, any key to continue");
